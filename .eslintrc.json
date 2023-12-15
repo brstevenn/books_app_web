@@ -5,6 +5,9 @@
         "node": true
     },
     "extends": [
+        "next/core-web-vitals",
+        "next",
+        "next/core-modules",
         "standard-with-typescript",
         "plugin:react/recommended"
     ],

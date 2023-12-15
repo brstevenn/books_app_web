@@ -1,31 +1,30 @@
 'use client'
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
-import { useState } from "react";
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+// import { useState } from 'react'
 
-export function AuthWhitPassword() {
-  const supabase = createClientComponentClient();
+export function AuthWhitPassword () {
+  const supabase = createClientComponentClient()
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState('')
+  // const [password, setPassword] = useState('')
 
   const handleSignIn = async () => {
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: 'example@email.com',
-        password: 'example-password',
+        password: 'example-password'
       })
 
-      if (error) {
-        console.error("Error al iniciar sesión:", error.message);
+      if (error != null) {
+        console.error('Error al iniciar sesión:', error.message)
       } else {
-        console.log("Inicio de sesión exitoso:", data);
+        console.log('Inicio de sesión exitoso:', data)
       }
     } catch (error) {
-      console.error("Error inesperado:", error);
+      console.error('Error inesperado:', error)
     }
-  };
-
+  }
 
   return (
     <form onSubmit={handleSignIn} className="max-w-sm mx-auto">

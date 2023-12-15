@@ -3,11 +3,11 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Books app',
-  description: 'Aplicacion para buscar y puntuar libros',
+  description: 'Aplicacion para buscar y puntuar libros'
 }
 
-export default function RootLayout({
-  children,
+export default function RootLayout ({
+  children
 }: {
   children: React.ReactNode
 }) {
