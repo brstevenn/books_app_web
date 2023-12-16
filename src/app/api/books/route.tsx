@@ -8,6 +8,6 @@ export async function GET () {
   const supabase = createServerComponentClient({ cookies })
   const { data: books } = await supabase
     .from('books')
-    .select('*, reviews(created_at, rate, commentary, user:users(username, picture))')
+    .select('*, reviews(created_at, rate, commentary, user:users(name, username, picture))')
   return NextResponse.json(books)
 }

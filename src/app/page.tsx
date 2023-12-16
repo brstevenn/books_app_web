@@ -5,18 +5,16 @@ import { BookCard } from './components/book-card'
 
 export default async function Home () {
   const supabase = createServerComponentClient({ cookies })
-  const { data: books } = await supabase.from('books').select('*, reviews(created_at, rate, commentary, user:users(username, picture))')
+  const { data: books } = await supabase.from('books').select('*, reviews(created_at, rate, commentary, user:users(name, username, picture))')
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <AuthButtonServer />
-      <pre>
-        {
-          books?.map((book, index) => (
-            <BookCard key={index} data={book} />
-          ))
-        }
-      </pre>
+      <div className="grid grid-cols-2 gap-8">
+        {books?.map((book, index) => (
+          <BookCard key={index} data={book} />
+        ))}
+      </div>
     </main>
   )
 }
