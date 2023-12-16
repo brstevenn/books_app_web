@@ -1,14 +1,11 @@
-export function UserReviewCard({ review }: any) {
-  console.log(review)
+import { format } from 'date-fns-tz';
 
+export function UserReviewCard({ review }: any) {
   const date = new Date(review?.created_at);
   const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000);
 
-  const options = { timeZoneName: 'short' };
-
-  const dateString = localDate.toLocaleDateString(undefined);
-  const timeString = localDate.toLocaleTimeString(undefined);
-
+  const options = { timeZone: 'UTC' };
+  const formattedDate = format(localDate, 'HH:mm:ss dd/MM/yyyy', options);
   return (
     <div className="grid border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 md:grid-cols-1 bg-white dark:bg-gray-800">
       <figure className="flex flex-col items-start justify-start p-4 text-start bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e dark:bg-gray-800 dark:border-gray-700">
@@ -17,7 +14,7 @@ export function UserReviewCard({ review }: any) {
           <div className="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
             <p >{review?.user?.name}</p>
             <div className="text-sm text-gray-500 dark:text-gray-400 ">{review?.user?.username}</div>
-            <div className="text-sm text-gray-500 dark:text-gray-400 " >{`${timeString} ${dateString}`}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400 " >{formattedDate}</div>
           </div>
         </figcaption>
         <div className="flex items-center mt-2.5 mb-5">
